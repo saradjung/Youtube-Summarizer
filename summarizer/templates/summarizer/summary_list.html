@@ -5,35 +5,43 @@ Summarizer{% endblock %} {% block content %}
 
   {% if summaries %}
   <div class="table-responsive">
-    <table class="table table-hover">
-      <thead>
+    <table class="table table-hover align-middle text-light">
+      <thead class="border-bottom">
         <tr>
           <th>Video ID</th>
           <th>Type</th>
           <th>Status</th>
           <th>Date</th>
-          <th>Actions</th>
+          <th class="text-end">Actions</th>
         </tr>
       </thead>
+
       <tbody>
         {% for summary in summaries %}
-        <tr>
+        <tr class="recent-item">
           <td>
-            <a href="{% url 'summary_detail' summary.pk %}">
+            <a
+              href="{% url 'summary_detail' summary.pk %}"
+              class="link-info text-decoration-none fw-semibold"
+            >
               {{ summary.video_id }}
             </a>
           </td>
-          <td>{{ summary.get_summary_type_display }}</td>
+
+          <td class="text-muted">{{ summary.get_summary_type_display }}</td>
+
           <td>
             <span class="badge badge-custom status-{{ summary.status }}">
               {{ summary.get_status_display }}
             </span>
           </td>
-          <td>{{ summary.created_at|date:"M d, Y" }}</td>
-          <td>
+
+          <td class="text-muted">{{ summary.created_at|date:"M d, Y" }}</td>
+
+          <td class="text-end">
             <a
               href="{% url 'summary_detail' summary.pk %}"
-              class="btn btn-sm btn-outline-primary"
+              class="btn btn-sm btn-outline-light"
             >
               View
             </a>
@@ -46,36 +54,47 @@ Summarizer{% endblock %} {% block content %}
 
   <!-- Pagination -->
   {% if is_paginated %}
-  <nav>
+  <nav class="mt-4">
     <ul class="pagination justify-content-center">
       {% if page_obj.has_previous %}
       <li class="page-item">
-        <a class="page-link" href="?page={{ page_obj.previous_page_number }}"
-          >Previous</a
+        <a
+          class="page-link bg-transparent text-light border-secondary"
+          href="?page={{ page_obj.previous_page_number }}"
         >
+          ← Previous
+        </a>
       </li>
       {% endif %}
 
       <li class="page-item active">
-        <span class="page-link">{{ page_obj.number }}</span>
+        <span class="page-link bg-transparent border-primary text-primary">
+          {{ page_obj.number }}
+        </span>
       </li>
 
       {% if page_obj.has_next %}
       <li class="page-item">
-        <a class="page-link" href="?page={{ page_obj.next_page_number }}"
-          >Next</a
+        <a
+          class="page-link bg-transparent text-light border-secondary"
+          href="?page={{ page_obj.next_page_number }}"
         >
+          Next →
+        </a>
       </li>
       {% endif %}
     </ul>
   </nav>
   {% endif %} {% else %}
+
+  <!-- Empty State -->
   <div class="text-center py-5">
-    <p class="text-muted">
+    <p class="text-muted mb-3">
       No summaries yet. Start by summarizing your first video!
     </p>
-    <a href="{% url 'home' %}" class="btn btn-primary mt-3"> Get Started </a>
+    <a href="{% url 'home' %}" class="btn btn-primary"> 🚀 Get Started </a>
   </div>
+
   {% endif %}
 </div>
 {% endblock %}

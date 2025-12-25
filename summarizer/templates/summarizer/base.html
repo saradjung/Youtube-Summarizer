@@ -169,6 +169,60 @@
         font-size: 0.9rem;
         opacity: 0.85;
       }
+      /* ===== FORCE DARK TABLE OVERRIDE ===== */
+
+      .table {
+        background: transparent !important;
+        color: var(--text-main) !important;
+      }
+
+      .table thead th {
+        background: rgba(255, 255, 255, 0.05) !important;
+        color: var(--text-main) !important;
+        border-bottom: 1px solid var(--border-glass) !important;
+      }
+
+      .table tbody tr {
+        background: transparent !important;
+      }
+
+      .table tbody tr:hover {
+        background: rgba(255, 255, 255, 0.06) !important;
+      }
+
+      .table td,
+      .table th {
+        border-color: var(--border-glass) !important;
+        vertical-align: middle;
+      }
+
+      /* Links inside table */
+      .table a {
+        color: var(--accent) !important;
+        text-decoration: none;
+      }
+
+      .table a:hover {
+        text-decoration: underline;
+      }
+
+      /* Fix disabled / faded buttons */
+      .table .btn {
+        background: transparent;
+      }
+
+      /* Pagination */
+      .page-link {
+        background: transparent !important;
+        color: var(--text-main) !important;
+        border-color: var(--border-glass) !important;
+      }
+
+      .page-item.active .page-link {
+        background: rgba(124, 124, 255, 0.2) !important;
+        border-color: var(--accent) !important;
+        color: var(--accent) !important;
+      }
     </style>
 
     {% block extra_css %}{% endblock %}

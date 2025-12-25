@@ -1,35 +1,40 @@
 {% extends 'summarizer/base.html' %} {% block title %}Home - YouTube
 Summarizer{% endblock %} {% block content %}
 <div class="main-container">
+  <!-- Header -->
   <div class="header">
     <div class="youtube-icon">🎥</div>
     <h1>YouTube Video Summarizer</h1>
-    <p>Get AI-powered summaries of any YouTube video instantly</p>
+    <p class="text-muted">
+      Get AI-powered summaries of any YouTube video instantly
+    </p>
   </div>
 
   <!-- Form -->
-  <form method="post" class="mb-4">
+  <form method="post" class="mb-5">
     {% csrf_token %}
 
-    <div class="mb-3">
+    <div class="mb-4">
       <label
         for="{{ form.youtube_url.id_for_label }}"
-        class="form-label fw-bold"
+        class="form-label fw-semibold"
       >
         YouTube URL
       </label>
+
       {{ form.youtube_url }} {% if form.youtube_url.errors %}
-      <div class="text-danger mt-2">{{ form.youtube_url.errors }}</div>
+      <div class="text-danger mt-2 small">{{ form.youtube_url.errors }}</div>
       {% endif %}
     </div>
 
     <div class="mb-4">
       <label
         for="{{ form.summary_type.id_for_label }}"
-        class="form-label fw-bold"
+        class="form-label fw-semibold"
       >
         Summary Type
       </label>
+
       {{ form.summary_type }}
     </div>
 
@@ -43,21 +48,23 @@ Summarizer{% endblock %} {% block content %}
   <!-- Recent Summaries -->
   {% if recent_summaries %}
   <div class="mt-5">
-    <h4 class="mb-3">📚 Recent Summaries</h4>
-    <div class="list-group">
+    <h4 class="mb-4">📚 Recent Summaries</h4>
+
+    <div class="list-group list-group-flush">
       {% for summary in recent_summaries %}
       <a
         href="{% url 'summary_detail' summary.pk %}"
-        class="list-group-item list-group-item-action recent-item"
+        class="list-group-item list-group-item-action recent-item bg-transparent text-light border-0"
       >
         <div class="d-flex justify-content-between align-items-center">
           <div>
-            <strong>{{ summary.video_id }}</strong>
-            <small class="text-muted d-block">
-              {{ summary.get_summary_type_display }} •
-              {{summary.created_at|timesince }} ago
+            <strong class="d-block"> {{ summary.video_id }} </strong>
+            <small class="text-muted">
+              {{ summary.get_summary_type_display }} • {{
+              summary.created_at|timesince }} ago
             </small>
           </div>
+
           <span class="badge badge-custom status-{{ summary.status }}">
             {{ summary.get_status_display }}
           </span>

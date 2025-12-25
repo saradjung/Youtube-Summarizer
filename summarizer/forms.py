@@ -9,12 +9,12 @@ class SummarizeForm(forms.ModelForm):
         fields = ['youtube_url', 'summary_type']
         widgets={
             'youtube_url':forms.URLInput(attrs={
-                "class":'form-control',
+                "class":'form-control bg-dark text-light border-secondary',
                 'placeholder':'https://www.youtube.com/watch?v=...',
                 'required':'True'
             }),
             'summary_type':forms.Select(attrs={
-                'class':'form-select',
+                'class':'form-select bg-dark text-light border-secondary',
             }),
         }
 
