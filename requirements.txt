@@ -3,3 +3,4 @@ google-genai
 youtube-transcript-api
 python-decouple
 django-markdownify
+psycopg2-binary
