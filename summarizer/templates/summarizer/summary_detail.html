@@ -1,0 +1,94 @@
+{% extends 'summarizer/base.html' %} {% block title %}Summary - {{
+summary.video_id }}{% endblock %} {% block content %}
+<div class="main-container">
+  <!-- Header -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>📝 Video Summary</h2>
+    <span class="badge badge-custom status-{{ summary.status }}">
+      {{ summary.get_status_display }}
+    </span>
+  </div>
+
+  {% load markdownify %}
+  <!-- Video Embed -->
+  {% if summary.status == 'completed' %}
+  <div class="video-embed mb-4">
+    <div class="ratio ratio-16x9 shadow-sm rounded overflow-hidden">
+      <iframe
+        src="https://www.youtube.com/embed/{{ summary.video_id }}"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </div>
+
+  <div class="summary-box p-4 border rounded bg-white shadow-sm">
+    <h2 class="h4 mb-4 border-bottom pb-2">
+      {{ summary.get_summary_type_display }} Summary
+    </h2>
+
+    <div class="markdown-content">{{ summary.summary|markdownify }}</div>
+  </div>
+  {% endif %}
+
+  <!-- Metadata -->
+  <div class="row mb-4">
+    <div class="col-md-6">
+      <p><strong>Video ID:</strong> {{ summary.video_id }}</p>
+      <p>
+        <strong>Summary Type:</strong> {{ summary.get_summary_type_display }}
+      </p>
+    </div>
+    <div class="col-md-6">
+      <p>
+        <strong>Created:</strong> {{ summary.created_at|date:"M d, Y H:i" }}
+      </p>
+      <p>
+        <strong>URL:</strong>
+        <a href="{{ summary.youtube_url }}" target="_blank">Open Video</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- Transcript (Expandable) -->
+  <div class="accordion" id="transcriptAccordion">
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button
+          class="accordion-button collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#transcriptCollapse"
+        >
+          📄 View Full Transcript
+        </button>
+      </h2>
+      <div
+        id="transcriptCollapse"
+        class="accordion-collapse collapse"
+        data-bs-parent="#transcriptAccordion"
+      >
+        <div class="accordion-body">
+          <div class="transcript-box">{{ summary.transcript }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% if summary.status == 'failed' %}
+  <div class="alert alert-danger">
+    <h5>❌ Processing Failed</h5>
+    <p>{{ summary.error_message }}</p>
+  </div>
+  {% endif %}
+
+  <!-- Actions -->
+  <div class="text-center mt-4">
+    <a href="{% url 'home' %}" class="btn btn-outline-primary">
+      ← Summarize Another Video
+    </a>
+    <a href="{% url 'summary_list' %}" class="btn btn-outline-secondary">
+      View History
+    </a>
+  </div>
+</div>
+{% endblock %}

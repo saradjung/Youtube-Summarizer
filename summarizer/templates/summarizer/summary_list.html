@@ -1,0 +1,81 @@
+{% extends 'summarizer/base.html' %} {% block title %}History - YouTube
+Summarizer{% endblock %} {% block content %}
+<div class="main-container">
+  <h2 class="mb-4">📚 Summary History</h2>
+
+  {% if summaries %}
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Video ID</th>
+          <th>Type</th>
+          <th>Status</th>
+          <th>Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for summary in summaries %}
+        <tr>
+          <td>
+            <a href="{% url 'summary_detail' summary.pk %}">
+              {{ summary.video_id }}
+            </a>
+          </td>
+          <td>{{ summary.get_summary_type_display }}</td>
+          <td>
+            <span class="badge badge-custom status-{{ summary.status }}">
+              {{ summary.get_status_display }}
+            </span>
+          </td>
+          <td>{{ summary.created_at|date:"M d, Y" }}</td>
+          <td>
+            <a
+              href="{% url 'summary_detail' summary.pk %}"
+              class="btn btn-sm btn-outline-primary"
+            >
+              View
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pagination -->
+  {% if is_paginated %}
+  <nav>
+    <ul class="pagination justify-content-center">
+      {% if page_obj.has_previous %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ page_obj.previous_page_number }}"
+          >Previous</a
+        >
+      </li>
+      {% endif %}
+
+      <li class="page-item active">
+        <span class="page-link">{{ page_obj.number }}</span>
+      </li>
+
+      {% if page_obj.has_next %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ page_obj.next_page_number }}"
+          >Next</a
+        >
+      </li>
+      {% endif %}
+    </ul>
+  </nav>
+  {% endif %} {% else %}
+  <div class="text-center py-5">
+    <p class="text-muted">
+      No summaries yet. Start by summarizing your first video!
+    </p>
+    <a href="{% url 'home' %}" class="btn btn-primary mt-3"> Get Started </a>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}
