@@ -59,9 +59,9 @@ Summarizer{% endblock %} {% block content %}
         <div class="d-flex justify-content-between align-items-center">
           <div>
             <strong class="d-block"> {{ summary.video_id }} </strong>
-            <small class="text-muted">
-              {{ summary.get_summary_type_display }} • {{
-              summary.created_at|timesince }} ago
+            <small class="text-secondary">
+              {{ summary.get_summary_type_display }} •
+              {{summary.created_at|timesince }} ago
             </small>
           </div>
 
