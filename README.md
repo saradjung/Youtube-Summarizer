@@ -26,8 +26,10 @@ all through a clean, modern dark-themed UI.
 ## 🖼️ Preview
 
 ### 🏠 Home Page
-![Home Page](<img width="896" height="764" alt="image" src="https://github.com/user-attachments/assets/9df6a473-c423-424a-936e-bdd6593e4f90" />
+![Home Page](
 )
+<img width="896" height="764" alt="YT1" src="https://github.com/user-attachments/assets/8be512d2-4906-42eb-8277-c9ca03ecda24" />
+
 
 ### 📝 Summary Detail Page
 ![Summary Detail](<img width="882" height="1124" alt="image" src="https://github.com/user-attachments/assets/85478192-d2b3-425b-bd2b-d5cad4115fbd" />)
