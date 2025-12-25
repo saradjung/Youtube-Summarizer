@@ -13,23 +13,33 @@
 
     <style>
       :root {
-        --primary-color: #ff0000;
-        --secondary-color: #282828;
+        --bg-dark: #0f1220;
+        --bg-dark-2: #151a2e;
+        --card-bg: rgba(255, 255, 255, 0.08);
+        --accent: #7c7cff;
+        --accent-2: #4fd1c5;
+        --text-main: #eaeaff;
+        --text-muted: #a0a3c4;
+        --border-glass: rgba(255, 255, 255, 0.15);
       }
 
       body {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #0f1220, #1a1f3c);
         min-height: 100vh;
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        font-family: "Inter", "Segoe UI", sans-serif;
+        color: var(--text-main);
       }
 
+      /* Glass container */
       .main-container {
-        background: white;
-        border-radius: 20px;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        padding: 40px;
-        margin: 50px auto;
+        background: var(--card-bg);
+        backdrop-filter: blur(16px);
+        border-radius: 22px;
+        box-shadow: 0 25px 80px rgba(0, 0, 0, 0.6);
+        padding: 45px;
+        margin: 60px auto;
         max-width: 900px;
+        border: 1px solid var(--border-glass);
       }
 
       .header {
@@ -38,99 +48,126 @@
       }
 
       .header h1 {
-        color: #333;
+        color: var(--text-main);
         font-weight: 700;
-        margin-bottom: 10px;
+        letter-spacing: 0.5px;
       }
 
       .header p {
-        color: #666;
-        font-size: 1.1rem;
+        color: var(--text-muted);
+        font-size: 1.05rem;
       }
 
       .youtube-icon {
         font-size: 3rem;
-        color: #ff0000;
+        color: var(--accent);
         margin-bottom: 20px;
+        text-shadow: 0 0 20px rgba(124, 124, 255, 0.6);
       }
 
+      /* Buttons */
       .btn-primary {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
         border: none;
-        padding: 12px 30px;
+        padding: 12px 34px;
         font-weight: 600;
-        border-radius: 10px;
-        transition: transform 0.2s;
+        border-radius: 14px;
+        color: #0f1220;
+        transition: all 0.3s ease;
       }
 
       .btn-primary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        transform: translateY(-3px);
+        box-shadow: 0 15px 30px rgba(124, 124, 255, 0.4);
       }
 
+      /* Summary box */
       .summary-box {
-        background: #f8f9fa;
-        border-left: 5px solid #667eea;
+        background: rgba(255, 255, 255, 0.06);
+        border-left: 4px solid var(--accent);
         padding: 25px;
-        border-radius: 10px;
+        border-radius: 14px;
         margin: 20px 0;
+        color: var(--text-main);
       }
 
+      /* Video embed */
       .video-embed {
-        border-radius: 15px;
+        border-radius: 16px;
         overflow: hidden;
-        margin: 20px 0;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        margin: 25px 0;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
       }
 
+      /* Transcript */
       .transcript-box {
-        background: #f8f9fa;
-        padding: 20px;
-        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.05);
+        padding: 22px;
+        border-radius: 14px;
         max-height: 300px;
         overflow-y: auto;
         font-size: 0.9rem;
-        line-height: 1.6;
+        line-height: 1.7;
+        color: var(--text-muted);
       }
 
+      /* Status badges */
       .badge-custom {
-        padding: 8px 15px;
+        padding: 8px 16px;
         border-radius: 20px;
-        font-size: 0.85rem;
+        font-size: 0.8rem;
         font-weight: 600;
       }
 
       .status-completed {
-        background: #d4edda;
-        color: #155724;
+        background: rgba(79, 209, 197, 0.2);
+        color: var(--accent-2);
       }
 
       .status-processing {
-        background: #fff3cd;
-        color: #856404;
+        background: rgba(255, 193, 7, 0.2);
+        color: #ffc107;
       }
 
       .status-failed {
-        background: #f8d7da;
-        color: #721c24;
+        background: rgba(255, 99, 132, 0.2);
+        color: #ff6384;
       }
 
+      /* Recent items */
       .recent-item {
-        padding: 15px;
-        border-bottom: 1px solid #eee;
-        transition: background 0.2s;
+        padding: 16px;
+        border-bottom: 1px solid var(--border-glass);
+        transition: background 0.3s;
       }
 
       .recent-item:hover {
-        background: #f8f9fa;
+        background: rgba(255, 255, 255, 0.05);
       }
 
+      /* Navbar */
       .navbar-custom {
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(10px);
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        padding: 15px 0;
-        margin-bottom: 30px;
+        background: rgba(15, 18, 32, 0.9);
+        backdrop-filter: blur(12px);
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
+        padding: 14px 0;
+      }
+
+      .navbar-brand,
+      .nav-link {
+        color: var(--text-main) !important;
+        font-weight: 500;
+      }
+
+      .nav-link:hover {
+        color: var(--accent) !important;
+      }
+
+      /* Footer */
+      footer {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        opacity: 0.85;
       }
     </style>
 
