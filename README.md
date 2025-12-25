@@ -26,16 +26,16 @@ all through a clean, modern dark-themed UI.
 ## 🖼️ Preview
 
 ### 🏠 Home Page
-![Home Page](
-)
-<img width="896" height="764" alt="YT1" src="https://github.com/user-attachments/assets/8be512d2-4906-42eb-8277-c9ca03ecda24" />
+![Home Page](<img width="896" height="764" alt="YT1" src="https://github.com/user-attachments/assets/8be512d2-4906-42eb-8277-c9ca03ecda24" />)
 
 
 ### 📝 Summary Detail Page
-![Summary Detail](<img width="882" height="1124" alt="image" src="https://github.com/user-attachments/assets/85478192-d2b3-425b-bd2b-d5cad4115fbd" />)
+![Summary Detail](<img width="866" height="1117" alt="yt2" src="https://github.com/user-attachments/assets/eb8e908c-a887-4a66-84e3-1f2a844e7383" />
+)
 
 ### 📚 Summary History
-![History Page](<img width="891" height="488" alt="image" src="https://github.com/user-attachments/assets/7c83b041-dd81-4f57-b3fb-eb971d8914a5" />)
+![History Page](<img width="931" height="526" alt="yt3" src="https://github.com/user-attachments/assets/404a2438-ee8b-478b-b3cc-8589f8a3518b" />
+)
 
 
 
