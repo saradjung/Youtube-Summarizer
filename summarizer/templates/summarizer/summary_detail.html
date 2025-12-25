@@ -12,10 +12,14 @@ summary.video_id }}{% endblock %} {% block content %}
   {% load markdownify %} {% if summary.status == 'completed' %}
 
   <!-- Video Embed -->
-  <div class="video-embed mb-5">
-    <div class="ratio ratio-16x9 rounded overflow-hidden">
+  <div class="video-embed mb-4">
+    <div class="ratio ratio-16x9 shadow-sm rounded overflow-hidden">
       <iframe
-        src="https://www.youtube.com/embed/{{ summary.video_id }}"
+        src="https://www.youtube-nocookie.com/embed/{{ summary.video_id }}?rel=0&modestbranding=1"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
         allowfullscreen
       ></iframe>
     </div>
